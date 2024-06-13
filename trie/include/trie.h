@@ -15,6 +15,7 @@
 
 # define ALPHABET_SIZE 26
 
+# include "essentials.h"
 # include "list.h"
 # include <stdbool.h>
 # include <stdint.h>

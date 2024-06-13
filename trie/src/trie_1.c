@@ -16,11 +16,11 @@ t_trie_node	*trie_node_create(void)
 {
 	t_trie_node	*self;
 
-	self = (t_trie_node *)malloc(sizeof(t_trie_node));
+	self = (t_trie_node *)memory_alloc(sizeof(t_trie_node));
 	if (!self)
 		return (NULL);
 	self->is_end_of_word = false;
-	memset(self->children, 0x00, ALPHABET_SIZE * sizeof(void *));
+	memory_fill(self->children, 0x00, ALPHABET_SIZE * sizeof(void *));
 	return (self);
 }
 
@@ -53,7 +53,7 @@ bool	trie_node_remove_child(t_trie_node *self, const char *const key,
 		{
 			self->is_end_of_word = false;
 			if (trie_node_is_empty(self))
-				return (free(self), (true));
+				return (memory_dealloc(self), (true));
 			return (false);
 		}
 	}
@@ -96,6 +96,6 @@ void	trie_node_destroy(t_trie_node *self)
 				trie_node_destroy(self->children[i]);
 			++i;
 		}
-		free(self);
+		memory_dealloc(self);
 	}
 }

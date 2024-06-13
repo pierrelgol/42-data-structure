@@ -16,7 +16,7 @@ t_list	*list_create(void)
 {
 	t_list	*list;
 
-	list = (t_list *)malloc(sizeof(t_list));
+	list = (t_list *)memory_alloc(sizeof(t_list));
 	list->head = NULL;
 	list->tail = NULL;
 	list->size = 0;
@@ -34,7 +34,7 @@ t_list	*list_destroy(t_list *self)
 		node = list_remove_front(self);
 		node_destroy(node);
 	}
-	free(self);
+	memory_destroy(self);
 	return (NULL);
 }
 

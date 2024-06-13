@@ -36,7 +36,7 @@ t_node	*node_destroy(t_node *self)
 {
 	if (self)
 	{
-		free(self);
+		memory_dealloc(self);
 	}
 	return (NULL);
 }

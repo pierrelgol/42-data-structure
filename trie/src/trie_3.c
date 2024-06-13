@@ -14,12 +14,12 @@
 
 static char	*trie_build_prefix(const char *prefix, char new_char)
 {
-	const uint64_t	prefix_len = strlen(prefix);
+	const uint64_t	prefix_len = string_length(prefix);
 	const uint64_t	new_len = prefix_len + 2;
 	char			*new_prefix;
 	uint64_t		i;
 
-	new_prefix = (char *)malloc(new_len);
+	new_prefix = (char *)memory_alloc(new_len);
 	if (new_prefix)
 	{
 		i = 0;
@@ -56,7 +56,7 @@ void	trie_collect_suggestions(t_trie_node *const node, const char *prefix,
 			{
 				trie_collect_suggestions(node->children[i], prefix_buffer,
 					suggestions);
-				free(prefix_buffer);
+				memory_dealloc(prefix_buffer);
 			}
 		}
 		++i;
@@ -68,7 +68,7 @@ t_trie	*trie_destroy(t_trie *const self)
 	if (self)
 	{
 		trie_node_destroy(self->root);
-		free(self);
+		memory_dealloc(self);
 	}
 	return (NULL);
 }

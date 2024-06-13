@@ -41,7 +41,7 @@ t_node	*node_create(uintptr_t data)
 {
 	t_node	*node;
 
-	node = (t_node *)malloc(sizeof(t_node));
+	node = (t_node *)memory_alloc(sizeof(t_node));
 	if (!node)
 		return (NULL);
 	node->next = 0;

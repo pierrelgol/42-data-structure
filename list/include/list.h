@@ -12,6 +12,7 @@
 #ifndef LIST_H
 # define LIST_H
 
+# include "essentials.h"
 # include <stdbool.h>
 # include <stdint.h>
 # include <stdlib.h>

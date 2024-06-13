@@ -16,13 +16,13 @@ t_trie	*trie_create(void)
 {
 	t_trie	*self;
 
-	self = (t_trie *)malloc(sizeof(t_trie));
+	self = (t_trie *)memory_alloc(sizeof(t_trie));
 	if (!self)
 		return (NULL);
 	self->root = trie_node_create();
 	if (!self->root)
 	{
-		free(self);
+		memory_dealloc(self);
 		return (NULL);
 	}
 	return (self);
@@ -74,11 +74,11 @@ bool	trie_remove(t_trie *const self, const char *const key)
 t_list	*trie_suggest(t_trie *const self, const char *prefix)
 {
 	t_trie_node	*prefix_node;
-	t_list		*suggestions;
+	t_list		*suggest;
 
-	suggestions = list_create();
+	suggest = list_create();
 	prefix_node = trie_node_find_prefix_node(self->root, prefix);
 	if (prefix_node)
-		trie_collect_suggestions(prefix_node, strdup(prefix), suggestions);
-	return (suggestions);
+		trie_collect_suggest(prefix_node, string_clone(prefix), suggest);
+	return (suggest);
 }
